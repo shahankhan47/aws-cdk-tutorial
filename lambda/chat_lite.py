@@ -31,7 +31,7 @@ async def codebase_qa_with_anthropic(email_id: str, project_id: str, summary: st
 
         response = CLIENT.beta.prompt_caching.messages.create(
             model="claude-haiku-4-5",
-            max_tokens=2000,
+            max_tokens=20000,
             system=[
                     {"type": "text", "text": "You are an AI assistant tasked with analyzing codebases."},
                     {"type": "text", "text": f"Here is the summary of a complex codebase: {summary}", "cache_control": {"type": "ephemeral"}}
