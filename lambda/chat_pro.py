@@ -46,35 +46,35 @@ log = logging.getLogger(__name__)
 # Title helper
 # ---------------------------------------------------------------------
 async def generate_chat_title(title: str, question: str) -> str:
-    if title == "New Chat":
-        try:
-            prompt = [
-                {
-                    "role": "system",
-                    "content": "Generate a short chat title (2-3 words only) summarizing the user's question. No punctuation."
-                },
-                {
-                    "role": "user",
-                    "content": question
-                }
-            ]
+    # if title == "New Chat":
+    #     try:
+    #         prompt = [
+    #             {
+    #                 "role": "system",
+    #                 "content": "Generate a short chat title (2-3 words only) summarizing the user's question. No punctuation."
+    #             },
+    #             {
+    #                 "role": "user",
+    #                 "content": question
+    #             }
+    #         ]
 
-            res = await OPEN_AI_CLIENT.chat.completions.create(
-                model="gpt-4.1-nano",
-                messages=prompt,
-                max_completion_tokens=10
-            )
+    #         res = await OPEN_AI_CLIENT.chat.completions.create(
+    #             model="gpt-4.1-nano",
+    #             messages=prompt,
+    #             max_completion_tokens=10
+    #         )
 
-            title = (res.choices[0].message.content or "").strip()
-            final_title = title[:50] if title else question[:40]
+    #         title = (res.choices[0].message.content or "").strip()
+    #         final_title = title[:50] if title else question[:40]
 
-        except Exception:
-            log.warning("[chat_pro] title generation failed, using question prefix", exc_info=True)
-            final_title = question[:40]
+    #     except Exception:
+    #         log.warning("[chat_pro] title generation failed, using question prefix", exc_info=True)
+    #         final_title = question[:40]
 
-        return final_title
+    #     return final_title
 
-    return title
+    return "Static Topic"
 
 
 # ---------------------------------------------------------------------
